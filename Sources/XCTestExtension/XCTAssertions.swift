@@ -20,3 +20,19 @@ public func XCTAssertThrowsErrorEqual<T, E>(
         XCTAssertEqual(thrownError, expression2(), file: file, line: line)
     }
 }
+
+public func XCTAssertThrowsErrorType<T, E>(
+    _ expression1: @autoclosure () throws -> T,
+    _ expression2: E.Type,
+    _ message: @autoclosure () -> String = "",
+    file: StaticString = #file,
+    line: UInt = #line
+) where E: Error {
+    do {
+        _ = try expression1()
+        XCTFail("Did not throw an error", file: file, line: line)
+    } catch let error {
+        if error is E { return }
+        XCTFail(#"Error type mismatch. Expected ("\#(E.self)") but received ("\#(type(of: error))")"#, file: file, line: line)
+    }
+}

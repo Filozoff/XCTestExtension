@@ -21,6 +21,20 @@ final class XCTestExtensionTests: XCTestCase {
         XCTExpectFailure("Should fail because of not throwing method")
         XCTAssertThrowsErrorEqual(try Stub().nonFailable(), Stub.EquatableError.errorTwo)
     }
+
+    func test_givenFailebleMethodWithMatchedError_whenAssertThrowsErrorType_thenMatch() throws {
+        XCTAssertThrowsErrorType(try Stub().fail(), Stub.NonEquatableError.self)
+    }
+
+    func test_givenFailableMethodWithDifferentErrorType_whenAssertThrowsErrorType_thenTestFailure() throws {
+        XCTExpectFailure("Should fail because of error type mismatch")
+        XCTAssertThrowsErrorType(try Stub().failEquatableTwo(), Stub.NonEquatableError.self)
+    }
+
+    func test_givenNonFailableMethod_whenAssertThrowsErrorType_thenTestFailure() throws {
+        XCTExpectFailure("Should fail because of not throwing method")
+        XCTAssertThrowsErrorType(try Stub().nonFailable(), Stub.NonEquatableError.self)
+    }
 }
 
 extension XCTestExtensionTests {
