@@ -1,0 +1,21 @@
+name: Build and test package
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  test:
+    name: Test
+    runs-on: macos-12
+    env:
+      DEVELOPER_DIR: "/Applications/Xcode_14.0.app/Contents/Developer"
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Run tests
+      run: sh ./Scripts/run_tests.sh
