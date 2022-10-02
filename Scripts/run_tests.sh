@@ -15,7 +15,7 @@ function package_clean() {
 }
 
 function swift_test() {
-    swift test
+    swift test 2>&1 | xcpretty
 }
 
 # ENTRY POINT
