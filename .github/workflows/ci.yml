@@ -1,0 +1,11 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+    paths: ['.github/workflows/**', 'Package.swift', 'Scripts/**', 'Sources/**', 'Tests/**']
+
+jobs:
+  test:
+    name: CI test
+    uses: ./.github/workflows/pr-check.yml
