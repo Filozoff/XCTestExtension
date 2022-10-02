@@ -3,7 +3,7 @@ import XCTest
 
 final class XCTestExtensionTests: XCTestCase {
     
-    func test_givenFailebleMethodWithMatchedError_whenAssertThrowsErrorEqual_thenMatch() throws {
+    func test_givenFailableMethodWithMatchedError_whenAssertThrowsErrorEqual_thenMatch() throws {
         XCTAssertThrowsErrorEqual(try Stub().failEquatableTwo(), Stub.EquatableError.errorTwo)
     }
 
