@@ -1,12 +1,10 @@
-name: Build and test package
+name: PR Check
 
 on:
-  push:
-    branches: [ "master" ]
-    paths: ['.github/workflows/**', 'Package.swift', 'Scripts/**', 'Sources/**', 'Tests/**']
   pull_request:
     branches: [ "master" ]
     paths: ['.github/workflows/**', 'Package.swift', 'Scripts/**', 'Sources/**', 'Tests/**']
+  workflow_call:
 
 jobs:
   test:
