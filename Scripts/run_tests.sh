@@ -16,7 +16,7 @@ function package_clean() {
 }
 
 function swift_test() {
-    swift test 2>&1 | xcpretty
+    swift test --enable-code-coverage 2>&1 | xcpretty
 }
 
 # ENTRY POINT
