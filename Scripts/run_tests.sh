@@ -2,10 +2,11 @@
 
 set -Eeuo pipefail
 
+source "$(dirname "$0")"/common.sh
+
 # CONSTANTS
 
 readonly SCRIPT_ABS_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd -P)"
-readonly SWIFT_BUILD_DIR_NAME=".build"
 
 # FUNCTIONS
 
