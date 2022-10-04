@@ -8,12 +8,17 @@ on:
 jobs:
   test:
     name: CI test
-    uses: ./.github/workflows/pr-check.yml
-
-  code-coverage:
-    name: "Code coverage"
     runs-on: macos-12
+    env:
+      DEVELOPER_DIR: "/Applications/Xcode_14.0.app/Contents/Developer"
+
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run tests
+        run: sh ./Scripts/run_tests.sh
+
       - name: Code coverage
         run: sh ./Scripts/code_coverage.sh
 
