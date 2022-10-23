@@ -15,7 +15,7 @@ public func XCTAssertThrowsErrorType<T, E>(
     _ expression1: @autoclosure () throws -> T,
     _ expression2: E.Type,
     _ message: @autoclosure () -> String = "",
-    file: StaticString = #file,
+    file: StaticString = #filePath,
     line: UInt = #line
 ) where E: Error {
     do {
