@@ -20,9 +20,13 @@ public func XCTAssertThrowsErrorType<T, E>(
 ) where E: Error {
     do {
         _ = try expression1()
-        XCTFail("Did not throw an error", file: file, line: line)
+        XCTFail("Did not throw an error".addMessage(message()), file: file, line: line)
     } catch let error {
         if error is E { return }
-        XCTFail(#"Error type mismatch. Expected ("\#(E.self)") but received ("\#(type(of: error))")"#, file: file, line: line)
+        XCTFail(
+            #"Error type mismatch. Expected ("\#(E.self)") but received ("\#(type(of: error))")"#.addMessage(message()),
+            file: file,
+            line: line
+        )
     }
 }
