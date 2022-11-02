@@ -20,7 +20,7 @@ extension XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) async throws -> T where T: Sendable {
-        let expectation = expectation(description: "Operation should be finished before timeout")
+        let expectation = XCTestExpectation(description: "Operation should be finished before timeout")
         let task = Task(priority: .userInitiated) {
             try await waitForTask(withTimeout: timeout) {
                 defer { expectation.fulfill() }
@@ -28,8 +28,23 @@ extension XCTestCase {
             }
         }
 
-        continueAfterFailure = false
-        wait(for: [expectation], timeout: timeout)
+        let result = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        switch result {
+        case .timedOut:
+            continueAfterFailure = false
+            record(
+                .init(
+                    type: .assertionFailure,
+                    compactDescription: "XCTTimeout failed: Operation has exceeded \(timeout)s".addMessage(message()),
+                    sourceCodeContext: .init(
+                        location: .init(filePath: file, lineNumber: line)
+                    )
+                )
+            )
+
+        default: break
+        }
+
         return try await task.value
     }
 }
