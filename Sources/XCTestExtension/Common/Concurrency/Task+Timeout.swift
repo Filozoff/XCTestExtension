@@ -19,10 +19,8 @@ public func waitForTask<R>(
             throw TimedOutError()
         }
 
-        let result = try await group.next()!
-        group.cancelAll()
-
-        return result
+        defer { group.cancelAll() }
+        return try await group.next()!
     }
 }
 
