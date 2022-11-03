@@ -3,8 +3,8 @@ import Foundation
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 func waitForTask<R>(
     withTimeout timeout: TimeInterval,
-    _ task: @escaping () async throws -> R
-) async throws -> R {
+    _ task: @escaping @Sendable () async throws -> R
+) async throws -> R where R: Sendable {
     try await withThrowingTaskGroup(of: R.self) { group in
         await withUnsafeContinuation { continuation in
             group.addTask {

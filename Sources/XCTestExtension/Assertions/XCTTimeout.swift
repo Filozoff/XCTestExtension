@@ -14,7 +14,7 @@ extension XCTestCase {
     /// - Returns: A value of type `T`, the result of evaluating the given `expression`.
     /// - Throws: An error when `expression` does not return result before reaching the given timeout. It will also rethrow any error thrown while evaluating the given expression.
     public func XCTTimeout<T>(
-        _ expression: @autoclosure @escaping () async throws -> T,
+        _ expression: @autoclosure @escaping @Sendable () async throws -> T,
         timeout: TimeInterval,
         _ message: @autoclosure () -> String = "",
         file: StaticString = #filePath,
