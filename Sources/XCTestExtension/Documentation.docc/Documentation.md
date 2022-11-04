@@ -10,5 +10,6 @@ The framework provides additional assertion methods such as throwing `Error` typ
 
 ### Regular assertions
 
+- ``XCTAssertNoDiff(_:_:_:file:line:)``
 - ``XCTAssertThrowsErrorEqual(_:_:_:file:line:)``
 - ``XCTAssertThrowsErrorType(_:_:_:file:line:)``
