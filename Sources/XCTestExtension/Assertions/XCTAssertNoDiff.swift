@@ -8,8 +8,8 @@ import XCTest
 /// The differences are presented in readable form.
 ///
 /// - Parameters:
-///   - expression1: An expression of type `T`, where `T` is ``Equatable``.
-///   - expression2: A second expression of type T, where T is ``Equatable``.
+///   - expression1: An expression of type `T`, where `T` is `Equatable`.
+///   - expression2: A second expression of type T, where T is `Equatable`.
 ///   - message: An optional description of the failure.
 ///   - file: The file in which failure occurred. Defaults to the file name of the test case in which this function was called.
 ///   - line: The line number on which failure occurred. Defaults to the line number on which this function was called.
