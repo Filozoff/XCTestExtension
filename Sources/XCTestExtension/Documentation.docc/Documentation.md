@@ -15,3 +15,8 @@ The framework provides additional assertion methods such as throwing `Error` typ
 - ``XCTAssertThrowsErrorEqual(_:_:_:file:line:)-7l869``
 - ``XCTAssertThrowsErrorType(_:_:_:file:line:)-2mglq``
 - ``XCTAssertThrowsErrorType(_:_:_:file:line:)-6he7n``
+
+### XCTest async counterparts
+
+- ``XCTAssertNoThrow(_:_:file:line:)``
+- ``XCTAssertThrowsError(_:_:file:line:errorHandler:)``
