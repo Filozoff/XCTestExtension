@@ -1,4 +1,3 @@
-import Foundation
 import XCTest
 
 /// Asserts that an expression throws a specified error.
