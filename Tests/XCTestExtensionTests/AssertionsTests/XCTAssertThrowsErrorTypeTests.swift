@@ -16,4 +16,23 @@ final class XCTAssertThrowsErrorTypeTests: XCTestCase {
         XCTExpectFailure("Should fail because of not throwing method")
         XCTAssertThrowsErrorType(try MethodStub.nonFailable(), SimpleEnumError.self)
     }
+
+    // MARK: - Async
+
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    func test_givenFailebleMethodWithMatchedError_whenAsyncAssertThrowsErrorType_thenMatch() async throws {
+        await XCTAssertThrowsErrorType(try MethodStub.failable(with: SimpleEnumError.errorTwo), SimpleEnumError.self)
+    }
+
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    func test_givenFailableMethodWithDifferentErrorType_whenAsyncAssertThrowsErrorType_thenTestFailure() async throws {
+        XCTExpectFailure("Should fail because of error type mismatch")
+        await XCTAssertThrowsErrorType(try MethodStub.failable(with: EquatableError.errorTwo), SimpleEnumError.self)
+    }
+
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    func test_givenNonFailableMethod_whenAsyncAssertThrowsErrorType_thenTestFailure() async throws {
+        XCTExpectFailure("Should fail because of not throwing method")
+        await XCTAssertThrowsErrorType(try MethodStub.nonFailable(), SimpleEnumError.self)
+    }
 }
