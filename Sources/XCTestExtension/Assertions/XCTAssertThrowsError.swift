@@ -3,7 +3,7 @@ import XCTest
 /// Asserts that an async expression throws an error.
 ///
 /// - Parameters:
-///   - expression: An expression that can throw an error.
+///   - expression: An async expression that can throw an error.
 ///   - message: An optional description of a failure.
 ///   - file: The file where the failure occurs. The default is the filename of the test case where you call this function.
 ///   - line: The line number where the failure occurs. The default is the line number where you call this function.

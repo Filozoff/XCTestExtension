@@ -19,4 +19,4 @@ The framework provides additional assertion methods such as throwing `Error` typ
 ### XCTest async counterparts
 
 - ``XCTAssertNoThrow(_:_:file:line:)``
-- ``XCTAssertThrowsError(_:_:file:line:errorHandler:)``
+- ``XCTAssertThrowsError(_:_:file:line:_:)``
