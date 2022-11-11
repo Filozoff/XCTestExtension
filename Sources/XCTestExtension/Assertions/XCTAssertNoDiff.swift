@@ -21,9 +21,9 @@ public func XCTAssertNoDiff<T: Equatable>(
     line: UInt = #line
 ) {
     do {
-        let expected = try expression1()
-        let received = try expression2()
-        let message = "Found difference for \n" + diff(expected, received)
+        let received = try expression1()
+        let expected = try expression2()
+        let message = "Found difference: \n" + diff(expected, received)
             .joined(separator: ", ")
             .addMessage(message())
 
