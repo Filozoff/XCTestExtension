@@ -28,12 +28,6 @@ let package = Package(
             name: "XCTestExtension",
             dependencies: [
                 "Difference"
-            ],
-            swiftSettings: [
-                .unsafeFlags([
-                    "-Xfrontend",
-                    "-strict-concurrency=complete"
-                ])
             ]
         ),
         .testTarget(
