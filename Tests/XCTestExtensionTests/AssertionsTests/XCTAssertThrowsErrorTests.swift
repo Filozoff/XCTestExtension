@@ -5,7 +5,7 @@ import XCTest
 final class XCTAssertThrowsErrorTests: XCTestCase {
 
     func test_givenNonFailableMethod_whenAssertThrowsError_thenTestFailure() async throws {
-        XCTExpectFailure("Should fail because of not throwing method")
+        XCTExpectFailure("Should fail due to not throwing method")
         await XCTAssertThrowsError(try MethodStub.nonFailable())
     }
 

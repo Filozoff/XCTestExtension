@@ -19,7 +19,7 @@ final class XCTAssertNoDiffTests: XCTestCase {
 
         // when
         // then
-        XCTExpectFailure("Should fail because of difference fount between values")
+        XCTExpectFailure("Should fail due to a difference between values")
         XCTAssertNoDiff(value1, value2)
     }
 
@@ -41,7 +41,7 @@ final class XCTAssertNoDiffTests: XCTestCase {
 
         // when
         // then
-        XCTExpectFailure("Should fail because of difference fount between values")
+        XCTExpectFailure("Should fail due to a difference between values")
         XCTAssertNoDiff(value1, value2)
     }
 }

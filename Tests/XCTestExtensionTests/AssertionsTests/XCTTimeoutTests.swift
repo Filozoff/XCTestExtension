@@ -8,13 +8,13 @@ final class XCTTimeoutTests: XCTestCase {
     static let shortDelay = 0.2
 
     func test_givenLongAsync_whenTimeout_thenThrowsTimedOutError() async throws {
-        XCTExpectFailure("Should fail because of timeout")
+        XCTExpectFailure("Should fail due to operation timeout")
         try await XCTTimeout(await MethodStub.asynchronous(after: Self.longDelay), timeout: Self.shortDelay)
     }
 
     func test_givenLongAsyncReturningMethod_whenTimeout_thenThrowsTimedOutError() async throws {
         let expectedValue = "test_1234"
-        XCTExpectFailure("Should fail because of timeout")
+        XCTExpectFailure("Should fail due to operation timeout")
         let result = try await XCTTimeout(
             await MethodStub.asynchronous(return: expectedValue, after: Self.longDelay),
             timeout: Self.shortDelay
@@ -23,7 +23,7 @@ final class XCTTimeoutTests: XCTestCase {
     }
 
     func test_givenLongAsyncThrowingMethod_whenTimeout_thenThrowsTimedOutError() async throws {
-        XCTExpectFailure("Should fail because of timeout")
+        XCTExpectFailure("Should fail due to operation timeout")
         try await XCTTimeout(
             await MethodStub.asynchronousThrowing(error: SimpleEnumError.errorOne, after: Self.longDelay),
             timeout: Self.shortDelay
