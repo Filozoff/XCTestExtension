@@ -5,16 +5,16 @@ import XCTest
 public class PublisherExpectation<Publisher>: XCTestExpectation where Publisher: Combine.Publisher {
 
     private(set) var cancellables = [AnyCancellable]()
-    private let option: Option
+    private let observation: Observation
     private let publisher: Publisher
 
     public init(
         _ publisher: Publisher,
-        option: Option = .anyReceived(),
+        observation: Observation = .anyReceived(),
         description: String
     ) {
         self.publisher = publisher
-        self.option = option
+        self.observation = observation
         super.init(description: description)
 
         observePublisher()
@@ -24,7 +24,7 @@ public class PublisherExpectation<Publisher>: XCTestExpectation where Publisher:
         publisher.sink(
             receiveCompletion: { [weak self] in
                 guard let self else { return }
-                switch self.option {
+                switch self.observation {
                 case .completion(let predicate):
                     guard predicate($0) else { return }
                     self.fulfill()
@@ -33,7 +33,7 @@ public class PublisherExpectation<Publisher>: XCTestExpectation where Publisher:
             },
             receiveValue: { [weak self] in
                 guard let self else { return }
-                switch self.option {
+                switch self.observation {
                 case .receivedValue(let predicate):
                     guard predicate($0) else { return }
                     self.fulfill()
@@ -48,7 +48,7 @@ public class PublisherExpectation<Publisher>: XCTestExpectation where Publisher:
 @available(iOS 13.0, *)
 extension PublisherExpectation {
 
-    public enum Option {
+    public enum Observation {
 
         public typealias Predicate<T> = (T) -> Bool
 
