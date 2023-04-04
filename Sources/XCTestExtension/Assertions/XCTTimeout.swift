@@ -28,7 +28,7 @@ extension XCTestCase {
             }
         }
 
-        let result = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        let result = await XCTWaiter.fulfillment(of: [expectation], timeout: timeout)
         switch result {
         case .timedOut:
             continueAfterFailure = false

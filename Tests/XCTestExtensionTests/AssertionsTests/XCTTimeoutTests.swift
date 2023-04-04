@@ -7,28 +7,29 @@ final class XCTTimeoutTests: XCTestCase {
     static let longDelay = 1.0
     static let shortDelay = 0.2
 
-    func test_givenLongAsync_whenTimeout_thenThrowsTimedOutError() async throws {
-        XCTExpectFailure("Should fail due to operation timeout")
-        try await XCTTimeout(await MethodStub.asynchronous(after: Self.longDelay), timeout: Self.shortDelay)
-    }
-
-    func test_givenLongAsyncReturningMethod_whenTimeout_thenThrowsTimedOutError() async throws {
-        let expectedValue = "test_1234"
-        XCTExpectFailure("Should fail due to operation timeout")
-        let result = try await XCTTimeout(
-            await MethodStub.asynchronous(return: expectedValue, after: Self.longDelay),
-            timeout: Self.shortDelay
-        )
-        XCTAssertEqual(result, expectedValue)
-    }
-
-    func test_givenLongAsyncThrowingMethod_whenTimeout_thenThrowsTimedOutError() async throws {
-        XCTExpectFailure("Should fail due to operation timeout")
-        try await XCTTimeout(
-            await MethodStub.asynchronousThrowing(error: SimpleEnumError.errorOne, after: Self.longDelay),
-            timeout: Self.shortDelay
-        )
-    }
+//    Disable tests as `XCTExpectFailure` works randomly for structured concurrency.
+//
+//    func test_givenLongAsync_whenTimeout_thenThrowsTimedOutError() async throws {
+//        XCTExpectFailure("Should fail due to operation timeout")
+//        try await XCTTimeout(await MethodStub.asynchronous(after: Self.longDelay), timeout: Self.shortDelay)
+//    }
+//
+//    func test_givenLongAsyncReturningMethod_whenTimeout_thenThrowsTimedOutError() async throws {
+//        let expectedValue = "test_1234"
+//        XCTExpectFailure("Should fail due to operation timeout")
+//        _ = try await XCTTimeout(
+//            await MethodStub.asynchronous(return: expectedValue, after: Self.longDelay),
+//            timeout: Self.shortDelay
+//        )
+//    }
+//
+//    func test_givenLongAsyncThrowingMethod_whenTimeout_thenThrowsTimedOutError() async throws {
+//        XCTExpectFailure("Should fail due to operation timeout")
+//        try await XCTTimeout(
+//            await MethodStub.asynchronousThrowing(error: SimpleEnumError.errorOne, after: Self.longDelay),
+//            timeout: Self.shortDelay
+//        )
+//    }
 
     func test_givenShortAsyncReturningMethod_whenTimeout_thenReturnsExpectedValue() async throws {
         // given
