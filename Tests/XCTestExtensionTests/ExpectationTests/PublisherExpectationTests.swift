@@ -28,7 +28,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .anyCompletion(),
+            observation: .anyCompletion(),
             description : ""
         )
 
@@ -45,7 +45,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .anyCompletion(),
+            observation: .anyCompletion(),
             description : ""
         )
 
@@ -63,7 +63,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .anyCompletion(),
+            observation: .anyCompletion(),
             description : ""
         )
 
@@ -79,7 +79,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .anyCompletion(),
+            observation: .anyCompletion(),
             description : ""
         )
 
@@ -98,7 +98,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .completion(
+            observation: .completion(
                 predicate: { $0 == .finished }
             ),
             description : ""
@@ -117,7 +117,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .completion(
+            observation: .completion(
                 predicate: { $0 == .finished }
             ),
             description : ""
@@ -140,7 +140,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .completion(
+            observation: .completion(
                 predicate: { $0 == .failure(error) }
             ),
             description : ""
@@ -159,7 +159,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .completion(
+            observation: .completion(
                 predicate: { $0 == .failure(.errorOne) }
             ),
             description : ""
@@ -181,7 +181,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .anyReceived(),
+            observation: .anyReceived(),
             description : ""
         )
 
@@ -198,7 +198,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .anyReceived(),
+            observation: .anyReceived(),
             description : ""
         )
 
@@ -216,7 +216,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .anyReceived(),
+            observation: .anyReceived(),
             description : ""
         )
 
@@ -235,7 +235,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .receivedValue(
+            observation: .receivedValue(
                 predicate: { $0 == value }
             ),
             description : ""
@@ -256,7 +256,7 @@ final class PublisherExpectationTests: XCTestCase {
         let publisher = PassthroughSubject<String, EquatableError>()
         let sut = PublisherExpectation(
             publisher,
-            option: .receivedValue(
+            observation: .receivedValue(
                 predicate: { $0 == value }
             ),
             description : ""
