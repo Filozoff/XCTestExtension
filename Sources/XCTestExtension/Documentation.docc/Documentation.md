@@ -20,3 +20,7 @@ The framework provides additional assertion methods such as throwing `Error` typ
 
 - ``XCTAssertNoThrow(_:_:file:line:)``
 - ``XCTAssertThrowsError(_:_:file:line:_:)``
+
+### Expectations
+
+- ``PublisherExpectation``
