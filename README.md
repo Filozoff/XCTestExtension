@@ -10,6 +10,9 @@
 The framework provides additional assertion methods like: 
 - throwing `Error` type check
 - throwing specific `Error` check when it conforms to `Equatable`
+- values difference
+
+and helpers for `Combine`'s `Publisher`s testing.
 
 ## Documentation
 
