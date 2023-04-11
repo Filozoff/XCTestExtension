@@ -10,6 +10,10 @@ As an addition, it has an expectation object which helps working with `Combine`'
 
 ## Topics
 
+### Tutorials
+
+- <doc:GettingStarted>
+
 ### Regular assertions
 
 - ``XCTAssertNoDiff(_:_:_:file:line:)``
