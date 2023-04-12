@@ -7,29 +7,33 @@ final class XCTTimeoutTests: XCTestCase {
     static let longDelay = 1.0
     static let shortDelay = 0.2
 
-//    Disable tests as `XCTExpectFailure` works randomly for structured concurrency.
-//
-//    func test_givenLongAsync_whenTimeout_thenThrowsTimedOutError() async throws {
-//        XCTExpectFailure("Should fail due to operation timeout")
-//        try await XCTTimeout(await MethodStub.asynchronous(after: Self.longDelay), timeout: Self.shortDelay)
-//    }
-//
-//    func test_givenLongAsyncReturningMethod_whenTimeout_thenThrowsTimedOutError() async throws {
-//        let expectedValue = "test_1234"
-//        XCTExpectFailure("Should fail due to operation timeout")
-//        _ = try await XCTTimeout(
-//            await MethodStub.asynchronous(return: expectedValue, after: Self.longDelay),
-//            timeout: Self.shortDelay
-//        )
-//    }
-//
-//    func test_givenLongAsyncThrowingMethod_whenTimeout_thenThrowsTimedOutError() async throws {
-//        XCTExpectFailure("Should fail due to operation timeout")
-//        try await XCTTimeout(
-//            await MethodStub.asynchronousThrowing(error: SimpleEnumError.errorOne, after: Self.longDelay),
-//            timeout: Self.shortDelay
-//        )
-//    }
+    func test_givenLongAsync_whenTimeout_thenThrowsTimedOutError() async throws {
+        try skipForNewCompiler()
+
+        XCTExpectFailure("Should fail due to operation timeout")
+        try await XCTTimeout(await MethodStub.asynchronous(after: Self.longDelay), timeout: Self.shortDelay)
+    }
+
+    func test_givenLongAsyncReturningMethod_whenTimeout_thenThrowsTimedOutError() async throws {
+        try skipForNewCompiler()
+
+        let expectedValue = "test_1234"
+        XCTExpectFailure("Should fail due to operation timeout")
+        _ = try await XCTTimeout(
+            await MethodStub.asynchronous(return: expectedValue, after: Self.longDelay),
+            timeout: Self.shortDelay
+        )
+    }
+
+    func test_givenLongAsyncThrowingMethod_whenTimeout_thenThrowsTimedOutError() async throws {
+        try skipForNewCompiler()
+
+        XCTExpectFailure("Should fail due to operation timeout")
+        try await XCTTimeout(
+            await MethodStub.asynchronousThrowing(error: SimpleEnumError.errorOne, after: Self.longDelay),
+            timeout: Self.shortDelay
+        )
+    }
 
     func test_givenShortAsyncReturningMethod_whenTimeout_thenReturnsExpectedValue() async throws {
         // given
@@ -75,5 +79,26 @@ final class XCTTimeoutTests: XCTestCase {
         } catch {
             XCTFail(error.localizedDescription)
         }
+    }
+}
+
+extension XCTTimeoutTests {
+
+    /// Skip tests as `XCTExpectFailure` works randomly for structured concurrency due to `XCTWaiter.fulfillment`.
+    private func skipForNewCompiler(file: StaticString = #filePath, line: UInt = #line) throws {
+        try XCTSkipIf(
+            isUsingNewCompiler(),
+            "Test skipped because of structured concurrency issues from `XCTWaiter.fulfillment`",
+            file: file,
+            line: line
+        )
+    }
+
+    private func isUsingNewCompiler() -> Bool {
+        #if compiler(>=5.8)
+        return true
+        #else
+        return false
+        #endif
     }
 }
