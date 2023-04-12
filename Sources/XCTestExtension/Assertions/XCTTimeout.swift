@@ -28,7 +28,12 @@ extension XCTestCase {
             }
         }
 
+        #if compiler(>=5.8)
         let result = await XCTWaiter.fulfillment(of: [expectation], timeout: timeout)
+        #else
+        let result = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        #endif
+
         switch result {
         case .timedOut:
             continueAfterFailure = false
