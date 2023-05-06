@@ -1,6 +1,5 @@
 import Foundation
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 func waitForTask<R>(
     withTimeout timeout: TimeInterval,
     _ task: @escaping @Sendable () async throws -> R

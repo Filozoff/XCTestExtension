@@ -1,6 +1,5 @@
 import XCTest
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension XCTestCase {
 
     /// Asserts that an expression returns it's result  before reaching given timeout.
@@ -28,11 +27,7 @@ extension XCTestCase {
             }
         }
 
-        #if compiler(>=5.8)
         let result = await XCTWaiter.fulfillment(of: [expectation], timeout: timeout)
-        #else
-        let result = XCTWaiter.wait(for: [expectation], timeout: timeout)
-        #endif
 
         switch result {
         case .timedOut:

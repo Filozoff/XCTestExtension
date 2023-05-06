@@ -2,7 +2,6 @@ import Combine
 import XCTest
 @testable import XCTestExtension
 
-@available(iOS 13.0, *)
 final class PublisherExpectationTests: XCTestCase {
 
     // MARK: - Default predicate
