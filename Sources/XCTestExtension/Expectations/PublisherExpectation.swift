@@ -2,7 +2,6 @@ import Combine
 import XCTest
 
 /// An expectation that is fulfilled when an `Option`'s `Predicate` for a `Publisher` is satisfied.
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public class PublisherExpectation<Publisher>: XCTestExpectation where Publisher: Combine.Publisher {
 
     private(set) var cancellables = [AnyCancellable]()
@@ -51,7 +50,6 @@ public class PublisherExpectation<Publisher>: XCTestExpectation where Publisher:
     }
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension PublisherExpectation {
 
     /// A `Publisher` observation. Two observation are available: `completion` and `receivedValue`.

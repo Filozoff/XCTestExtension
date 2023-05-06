@@ -5,10 +5,10 @@ import PackageDescription
 let package = Package(
     name: "XCTestExtension",
     platforms: [
-        .iOS(.v11),
-        .macOS(.v10_13),
-        .watchOS(.v4),
-        .tvOS(.v11)
+        .iOS(.v13),
+        .macOS(.v10_15),
+        .watchOS(.v6),
+        .tvOS(.v13)
     ],
     products: [
         .library(
