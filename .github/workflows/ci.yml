@@ -29,10 +29,10 @@ jobs:
           directory: ./.coverage/
           fail_ci_if_error: true
           verbose: true
-        
+
   documentation:
     name: Deploy documentation
-    needs: test  
+    needs: test
     permissions:
       contents: read
       pages: write
@@ -45,7 +45,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     runs-on: macos-12
     env:
       DEVELOPER_DIR: "/Applications/Xcode_14.2.app/Contents/Developer"
@@ -53,13 +53,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Build DocC
         run: sh ./Scripts/make_documentation.sh
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
-        with: 
+        with:
           path: 'docs'
 
       - name: Deploy on GitHub Pages
