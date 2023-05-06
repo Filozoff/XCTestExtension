@@ -7,7 +7,6 @@ import XCTest
 ///   - message: An optional description of a failure.
 ///   - file: The file where the failure occurs. The default is the filename of the test case where you call this function.
 ///   - line: The line number where the failure occurs. The default is the line number where you call this function.
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func XCTAssertNoThrow<T>(
     _ expression: @autoclosure () async throws -> T,
     _ message: @autoclosure () -> String = "",

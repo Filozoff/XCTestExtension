@@ -30,7 +30,6 @@ public func XCTAssertThrowsErrorEqual<T, E>(
 ///   - message: An optional description of the assertion, for inclusion in test results.
 ///   - file: The file where the failure occurs. The default is the filename of the test case where you call this function.
 ///   - line: The line number where the failure occurs. The default is the line number where you call this function.
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func XCTAssertThrowsErrorEqual<T, E>(
     _ expression1: @autoclosure () async throws -> T,
     _ expression2: @autoclosure () -> E,
