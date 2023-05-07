@@ -19,8 +19,8 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
-        .package(url: "https://github.com/krzysztofzablocki/Difference", from: "1.0.0")
+        .package(url: "https://github.com/apple/swift-docc-plugin", exact: "1.2.0"),
+        .package(url: "https://github.com/krzysztofzablocki/Difference", exact: "1.0.2")
     ],
     targets: [
         .target(
