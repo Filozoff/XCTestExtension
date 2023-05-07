@@ -20,6 +20,10 @@ As an addition, it has an expectation object which helps working with `Combine`'
 - ``XCTAssertThrowsErrorEqual(_:_:_:file:line:)-4vuku``
 - ``XCTAssertThrowsErrorType(_:_:_:file:line:)-2mglq``
 
+### XCTest new async assertions
+
+- ``XCTest/XCTestCase/XCTTimeout(_:timeout:_:file:line:)``
+
 ### XCTest async counterparts
 
 - ``XCTAssertNoThrow(_:_:file:line:)``

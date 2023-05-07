@@ -15,14 +15,16 @@ function create_documentation() {
     local -r docs_index_path="$DOCS_PATH/index.html"
     local -r package_path_element=$(lowercase "$PACKAGE_NAME")
 
-    echo $package_path_element
+    echo "$package_path_element"
     swift package \
         --allow-writing-to-directory "$DOCS_PATH" \
-        generate-documentation --target "$PACKAGE_NAME" \
+        generate-documentation \
         --disable-indexing \
-        --transform-for-static-hosting \
         --hosting-base-path "$PACKAGE_NAME" \
-        --output-path "$DOCS_PATH"
+        --include-extended-types \
+        --output-path "$DOCS_PATH" \
+        --target "$PACKAGE_NAME" \
+        --transform-for-static-hosting
 
     echo "<script>window.location.href += \"/documentation/$package_path_element\"</script>" > "$docs_index_path"
 }

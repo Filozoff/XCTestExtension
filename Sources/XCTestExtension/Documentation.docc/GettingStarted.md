@@ -43,7 +43,7 @@ For stream termination expectation, use ``PublisherExpectation/Observation/compl
 
 ## Work with structured concurrency
 
-It may happen that `async` operations don't return a value or throw any error (e.g. when converting from closures or `Combine`). In that case, they will hang out for infinity. Besides a production code, it especially matters on CI, where the used resources are important and the output feedback is not as instant as running tests locally. The `XCTimeout` assertion resolves that issue.
+It may happen that `async` operations don't return a value or throw any error (e.g. when converting from closures or `Combine`). In that case, they will hang out for infinity. Besides a production code, it especially matters on CI, where the used resources are important and the output feedback is not as instant as running tests locally. The ``XCTest/XCTestCase/XCTTimeout(_:timeout:_:file:line:)`` assertion resolves that issue.
 
 An example of its usage may be found below:
 
@@ -63,7 +63,7 @@ func test_whenGetDetails_thenReceivedExpectedDetails() {
 }
 ```
 
-Additionally, `XCTimeout` allows to return a result from a method provided in `expression` parameter. The return value must inherit from `Sendable`.
+Additionally, ``XCTest/XCTestCase/XCTTimeout(_:timeout:_:file:line:)`` allows to return a result from a method provided in `expression` parameter. The return value must inherit from `Sendable`.
 
 ## Compare objects
 
