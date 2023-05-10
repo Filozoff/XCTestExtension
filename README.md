@@ -1,4 +1,5 @@
-![XCTestExtension](Images/XCTestExtensionLogo.png)
+![XCTestExtension: XCTest assertions and helpers](Images/XCTestExtensionLogo-dark.png#gh-dark-mode-only)
+![XCTestExtension: XCTest assertions and helpers](Images/XCTestExtensionLogo-light.png#gh-light-mode-only)
 
 # XCTestExtension
 
