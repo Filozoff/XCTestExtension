@@ -1,3 +1,5 @@
+![XCTestExtension](Images/XCTestExtensionLogo.png)
+
 # XCTestExtension
 
 [![CI](https://github.com/Filozoff/XCTestExtension/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Filozoff/XCTestExtension/actions/workflows/ci.yml)
