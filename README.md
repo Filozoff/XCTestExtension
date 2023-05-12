@@ -5,8 +5,8 @@
 
 [![CI](https://github.com/Filozoff/XCTestExtension/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Filozoff/XCTestExtension/actions/workflows/ci.yml)
 [![Codecov](https://codecov.io/gh/Filozoff/XCTestExtension/branch/master/graph/badge.svg)](https://codecov.io/gh/Filozoff/XCTestExtension)
-![Swift](https://img.shields.io/badge/Swift-5.8-orange)
-![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20watchOS%20%7C%20tvOS-red)
+[![Swift Supported Versions](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFilozoff%2FXCTestExtension%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/Filozoff/XCTestExtension)
+[![Platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFilozoff%2FXCTestExtension%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/Filozoff/XCTestExtension)
 ![Swift Package Manager](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-green)
 ![GitHub](https://img.shields.io/github/license/Filozoff/XCTestExtension)
 
