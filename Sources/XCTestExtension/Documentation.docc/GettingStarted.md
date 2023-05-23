@@ -12,7 +12,7 @@ As an example, for a stream value observation, use ``PublisherExpectation/Observ
 predicate: { $0 == expectedValue }
 ```
 
-A complete code example below:
+A complete code example is below:
 
 ```swift
 func test_givenValue_whenPublisherSend_thenReceivedExpectedValueInStream() {
@@ -37,7 +37,7 @@ func test_givenValue_whenPublisherSend_thenReceivedExpectedValueInStream() {
 }
 ```
 
-Use ``PublisherExpectation/Observation/anyReceived()`` convenience method in case where value received from the stream does not matter.
+Use ``PublisherExpectation/Observation/anyReceived()`` convenience method where the value received from the stream does not matter.
 
 For stream termination expectation, use ``PublisherExpectation/Observation/completion(predicate:)`` or ``PublisherExpectation/Observation/anyCompletion()``.
 
@@ -69,4 +69,4 @@ Additionally, ``XCTest/XCTestCase/XCTTimeout(_:timeout:_:file:line:)`` allows to
 
 `XCTAssertEqual` does not provide a readable output for not equal values. Use ``XCTAssertNoDiff(_:_:_:file:line:)`` to receive a readable diff. 
 
-``XCTAssertNoDiff(_:_:_:file:line:)`` relies on [Difference](https://github.com/krzysztofzablocki/Difference).
+``XCTAssertNoDiff(_:_:_:file:line:)`` relies on [Difference](https://github.com/krzysztofzablocki/Difference) created by [Krzysztof Zabłocki](https://github.com/krzysztofzablocki).
