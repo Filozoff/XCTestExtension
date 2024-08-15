@@ -41,20 +41,33 @@ function build_public_interface() {
 }
 
 function make_public_interface() {
-    local package_name
-
-    package_name=$(swift_package_name)
+    local package_products
+    local packages_public_interface_path
 
     if ! { error=$(build_public_interface 2>&1); }; then
         echo "$error"
         exit 1
     fi
 
-    MAKE_PUBLIC_INTERFACE=$(find "./$DERIVED_DATA_PATH/" -name "${package_name}.swiftinterface")
+    packages_public_interface_path="./$DERIVED_DATA_PATH/public_interface.swiftinterface"
+    rm -rf "$packages_public_interface_path"
+
+    package_products=$(swift_package_products)
+
+    for package_product in $package_products
+    do
+        cat "$(find "./$DERIVED_DATA_PATH/" -name "${package_product}.swiftinterface")" >> "$packages_public_interface_path"
+    done
+
+    MAKE_PUBLIC_INTERFACE="$packages_public_interface_path"
 }
 
 function swift_package_name() {
     swift package describe | awk '/Name:/ { print $2; exit; }'
+}
+
+function swift_package_products() {
+    swift package describe --type json | jq -r '.products.[].name'
 }
 
 function main() {
