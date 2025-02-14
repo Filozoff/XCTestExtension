@@ -13,6 +13,7 @@ readonly TEMP_DIRECTORY="tmp$RANDOM"
 
 function error_handler() {
     echo "$SCRIPT_NAME.sh: in '$1()', line $2: error: $3"
+    reset
     exit 1
 }
 
@@ -127,7 +128,12 @@ function main() {
         cat <<< "${major}.${minor}.${patch}"
     fi
 
-    rm -rf "$TEMP_DIRECTORY"
+    reset
+}
+
+function reset() {
+    cd "$CALL_DIR"
+    rm -rf "$TEMP_DIRECTORY" > /dev/null
 }
 
 # ENTRY POINT
