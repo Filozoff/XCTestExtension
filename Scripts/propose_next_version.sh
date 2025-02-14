@@ -140,13 +140,15 @@ while [[ $# -gt 0 ]]; do
             DESTINATION=${2}
             shift 2
         ;;
-        # Derived data path.
+        # Derived data path (optional).
         -r|--derived-data-path)
             DERIVED_DATA_PATH=${2}
             ARCHIVE_PATH="$DERIVED_DATA_PATH/archive"
             shift 2
         ;;
         # Package scheme name. For packages with multiple targets, it may be required to add `-Package` suffix.
+        # Example: your package is named `ClientService` and has two targets inside: `ClientServiceDTOs` and `ClientServiceAPI`.
+        # Then, your target would be `ClientService-Package`.
         -s|--scheme)
             SCHEME=${2}
             shift 2
