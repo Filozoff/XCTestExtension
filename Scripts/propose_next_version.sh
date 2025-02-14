@@ -62,10 +62,6 @@ function make_public_interface() {
     MAKE_PUBLIC_INTERFACE="$packages_public_interface_path"
 }
 
-function swift_package_name() {
-    swift package describe | awk '/Name:/ { print $2; exit; }'
-}
-
 function swift_package_products() {
     swift package describe --type json | jq -r '.products.[].name'
 }
