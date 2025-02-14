@@ -93,7 +93,7 @@ function main() {
 
     # Get public interface from the change marked with version tag.
     make_public_interface
-    version_public_interface_path="$MAKE_PUBLIC_INTERFACE"
+    version_public_interface_path="$temp_version_directory/$MAKE_PUBLIC_INTERFACE"
 
     # Go back to the project root.
     cd "$CALL_DIR"
