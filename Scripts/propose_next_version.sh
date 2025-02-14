@@ -6,6 +6,7 @@ trap 'error_handler ${FUNCNAME-main context} ${LINENO} $?' ERR
 # CONSTANTS
 
 readonly CALL_DIR="$PWD"
+readonly MANIFEST_NAME="Package.swift"
 readonly SCRIPT_NAME=$(basename -s ".sh" "$0")
 readonly TEMP_DIRECTORY="tmp$RANDOM"
 
@@ -70,10 +71,12 @@ function swift_package_products() {
 
 function main() {
     local current_branch_name
+    local current_manifest_path
     local current_public_interface_path
     local has_breaking_changes
     local has_additive_changes
     local temp_version_directory
+    local version_manifest_path
     local version_public_interface_path
     local version_tag
 
@@ -94,6 +97,7 @@ function main() {
     # Get public interface from the change marked with version tag.
     make_public_interface
     version_public_interface_path="$temp_version_directory/$MAKE_PUBLIC_INTERFACE"
+    version_manifest_path="$temp_version_directory/$MANIFEST_NAME"
 
     # Go back to the project root.
     cd "$CALL_DIR"
@@ -101,9 +105,15 @@ function main() {
     # Get public interface from the current change.
     make_public_interface
     current_public_interface_path="$MAKE_PUBLIC_INTERFACE"
+    current_manifest_path="$MANIFEST_NAME"
+
+    # Check manifest diff. Any change applied to manifest may introduce a breaking change.
+    # Example: adding a new dependendcy with specific version may break somebody's code they use same dependendcy but with different version.
+    # Swift Package Manager does not allow to use same dependendcy with two or more different versions.
+    has_manifest_changes=$(diff "$version_manifest_path" "$current_manifest_path" | grep -c -i "^<" || true)
 
     # Make public interfaces diffs
-    has_breaking_changes=$(diff "$version_public_interface_path" "$current_public_interface_path" | grep -c -i "^<" || true)
+    has_breaking_changes=$(diff "$version_public_interface_path" "$current_public_interface_path" | grep -c -i "^<" || true) || $has_manifest_changes
     has_additive_changes=$(diff "$version_public_interface_path" "$current_public_interface_path" | grep -c -i "^>" || true)
 
     # Create version based on diff output
