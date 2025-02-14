@@ -46,6 +46,7 @@ function make_public_interface() {
 
     if ! { error=$(build_public_interface 2>&1); }; then
         echo "$error"
+        echo "Cannot complete the build due to the compile error. Check logs above."
         exit 1
     fi
 
@@ -79,16 +80,15 @@ function main() {
 
     current_branch_name=$(git rev-parse --abbrev-ref HEAD)
     version_tag=$(get_current_version_tag_name)
-    temp_version_directory="$TEMP_DIRECTORY/version"
+    temp_version_directory="$TEMP_DIRECTORY"
 
     # Clean up derived data directory to prevent of any cached files usage.
     rm -rf "$DERIVED_DATA_PATH"
 
-    # Copy change tagged with given version tag to 'tmp{random}/version' directory by using clone of local repo and checkouting to version tag.
+    # Copy change tagged with given version tag to 'tmp{random}' directory by using clone of local repo and checkouting to version tag.
     git clone "$CALL_DIR" "$temp_version_directory" --quiet
     cd "$temp_version_directory"
-
-    # git checkout "tags/$version_tag" --force --quiet --recurse-submodules
+    git checkout "tags/$version_tag" --force --quiet --recurse-submodules
 
     # Get public interface from the change marked with version tag.
     make_public_interface
