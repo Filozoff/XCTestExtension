@@ -90,9 +90,8 @@ function main() {
     rm -rf "$DERIVED_DATA_PATH"
 
     # Copy change tagged with given version tag to 'tmp{random}' directory by using clone of local repo and checkouting to version tag.
-    git clone "$CALL_DIR" "$temp_version_directory" --quiet
+    git clone "$CALL_DIR" --branch "$version_tag" --single-branch "$temp_version_directory" --quiet --recurse-submodules -c advice.detachedHead=false
     cd "$temp_version_directory"
-    git checkout "tags/$version_tag" --force --quiet --recurse-submodules
 
     # Get public interface from the change marked with version tag.
     make_public_interface
