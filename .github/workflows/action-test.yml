@@ -6,6 +6,8 @@ on:
 
 env:
   DEVELOPER_DIR: "/Applications/Xcode_16.0.app/Contents/Developer"
+  TARGET_DEVICE: "platform=iOS Simulator,name=iPhone 16,OS=18.0"
+  TARGET_SCHEME: "XCTestExtension"
 
 jobs:
   test-custom-action:
@@ -23,8 +25,8 @@ jobs:
         id: test-action
         uses: Filozoff/action-swift-propose-next-version@v1
         with:
-          device: "platform=iOS Simulator,name=iPhone 16,OS=18.0"
-          scheme: "XCTestExtension"
+          device: "${{ env.TARGET_DEVICE }}"
+          scheme: "${{ env.TARGET_SCHEME }}"
 
   push-tag:
     name: Create and push tag
