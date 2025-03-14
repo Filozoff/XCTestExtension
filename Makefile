@@ -4,7 +4,7 @@ destination_device := platform=iOS Simulator,name=iPhone 16
 documentation_output_dir := ./docs
 scheme := XCTestExtension
 scripts_dir := ./Scripts
-test_coverage_report_dir := $(build_dir)/coverage_reports
+test_coverage_report_dir := ./.coverage
 test_output_dir := $(build_dir)/test_output
 test_targets := XCTestExtensionTests
 
