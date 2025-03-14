@@ -34,6 +34,7 @@ jobs:
 
   propose-next-version:
     name: Propose next version
+    needs: test
     runs-on: macos-15
     outputs:
       next-version: ${{ steps.next-version.outputs.proposed-next-version }}
@@ -66,7 +67,7 @@ jobs:
 
   documentation:
     name: Deploy documentation
-    needs: test
+    needs: push-tag
     permissions:
       contents: read
       pages: write
