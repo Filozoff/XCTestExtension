@@ -6,6 +6,8 @@ on:
 
 env:
   DEVELOPER_DIR: "/Applications/Xcode_16.0.app/Contents/Developer"
+  TARGET_DEVICE: "platform=iOS Simulator,name=iPhone 16,OS=18.0"
+  TARGET_SCHEME: "XCTestExtension"
 
 jobs:
   test:
@@ -29,6 +31,38 @@ jobs:
           directory: ./.coverage/
           fail_ci_if_error: true
           verbose: true
+
+  propose-next-version:
+    name: Propose next version
+    runs-on: macos-15
+    outputs:
+      next-version: ${{ steps.next-version.outputs.proposed-next-version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - name: Get next version
+        id: next-version
+        uses: Filozoff/action-swift-propose-next-version@v1
+        with:
+          device: "${{ env.TARGET_DEVICE }}"
+          scheme: "${{ env.TARGET_SCHEME }}"
+
+  push-tag:
+    name: Create and push tag
+    needs: propose-next-version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Push tag
+        uses: Filozoff/action-make-tag@v1
+        with:
+          commit-sha: "${{ github.sha }}"
+          tag: ${{ needs.propose-next-version.outputs.next-version }}
+          token: ${{ secrets.TAG_TOKEN }}
 
   documentation:
     name: Deploy documentation
