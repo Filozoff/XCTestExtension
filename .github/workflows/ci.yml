@@ -20,7 +20,7 @@ jobs:
         run: make test -s
 
       - name: Get coverage
-        run: sh ./Scripts/code_coverage.sh
+        run: make code-coverage -s
 
       - name: Upload code coverage
         uses: codecov/codecov-action@v3
