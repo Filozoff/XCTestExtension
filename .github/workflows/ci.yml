@@ -53,7 +53,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build DocC
-        run: sh ./Scripts/make_documentation.sh
+        run: make documentation -s
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
