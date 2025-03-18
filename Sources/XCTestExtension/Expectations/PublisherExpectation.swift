@@ -2,7 +2,7 @@ import Combine
 import XCTest
 
 /// An expectation that is fulfilled when an `Option`'s `Predicate` for a `Publisher` is satisfied.
-public class PublisherExpectation<Publisher>: XCTestExpectation where Publisher: Combine.Publisher {
+public class PublisherExpectation<Publisher>: XCTestExpectation, @unchecked Sendable where Publisher: Combine.Publisher {
 
     private(set) var cancellables = [AnyCancellable]()
     private let observation: Observation
